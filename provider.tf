@@ -7,10 +7,10 @@ terraform {
   }
 
 backend "s3" {
-  bucket = "tf-aws-tools-jenkins-remote-state"
-  key = "tf-aws-tools-jenkins-Tools"
+  bucket = "jenkins-tf-remote-state"
+  key = "jenkins-tf-tools"
   region = "us-east-1"
-  dynamodb_table="tf-aws-tools-jenkins-locking"
+  dynamodb_table="jenkins-tf-locking"
   }
 }
 #provide authentication here

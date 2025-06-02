@@ -46,7 +46,7 @@ data "aws_ami" "sonarqube_ami_info" {
 
     filter {
         name = "name"
-        values = ["SolveDevOps-SonarQube-Server-Ubuntu20.04-20240511-*"]
+        values = ["SolveDevOps-SonarQube-Server-Ubuntu24.04-20250320-*"]
              }
 
     filter {
@@ -59,8 +59,3 @@ data "aws_ami" "sonarqube_ami_info" {
          values = ["hvm"]
       }
 }
-
-
-
-
-
