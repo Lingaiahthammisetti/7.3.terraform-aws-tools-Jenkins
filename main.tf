@@ -10,14 +10,14 @@ module "jenkins_master" {
   user_data               = file("${path.module}/install_jenkins_master.sh")
 
   # Define the root volume size and type
-  root_block_device {
+  root_block_device = [{
     encrypted             = false
     volume_type           = "gp3"
     volume_size           = 50
     iops                  = 3000
     throughput            = 125
     delete_on_termination = true
-  }
+  }]
 
   tags = {
     Name   = "Jenkins-Master"
@@ -35,14 +35,15 @@ module "jenkins_agent" {
   user_data               = file("${path.module}/install_jenkins_agent.sh")
 
    # Define the root volume size and type
-  root_block_device {
+  root_block_device = [{
     encrypted             = false
     volume_type           = "gp3"
     volume_size           = 50
     iops                  = 3000
     throughput            = 100
     delete_on_termination = true
-  }
+  }]
+
 
   tags = {
     Name   = "Jenkins-Agent"
@@ -67,13 +68,15 @@ module "nexus" {
   key_name               = aws_key_pair.tools.key_name
    
   # Define the root volume size and type
-  root_block_device = [
-    {
-      volume_size = 30       # Size of the root volume in GB
-      volume_type = "gp3"    # General Purpose SSD (you can change it if needed)
-      delete_on_termination = true  # Automatically delete the volume when the instance is terminated
-    }
-  ]
+  root_block_device = [{
+    encrypted             = false
+    volume_type           = "gp3"
+    volume_size           = 50
+    iops                  = 3000
+    throughput            = 30
+    delete_on_termination = true
+  }]
+
   
   tags = {
     Name   = "Nexus"
@@ -90,13 +93,15 @@ module "sonarqube" {
   key_name = aws_key_pair.tools.key_name
    
   # Define the root volume size and type
-  root_block_device = [
-    {
-      volume_size = 50       # Size of the root volume in GB
-      volume_type = "gp3"    # General Purpose SSD (you can change it if needed)
-      delete_on_termination = true  # Automatically delete the volume when the instance is terminated
-    }
-  ]
+  root_block_device = [{
+    encrypted             = false
+    volume_type           = "gp3"
+    volume_size           = 50
+    iops                  = 3000
+    throughput            = 50
+    delete_on_termination = true
+  }]
+
   
   tags = {
     Name   = "SonarQube"
